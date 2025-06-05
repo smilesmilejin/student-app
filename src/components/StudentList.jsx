@@ -161,7 +161,6 @@ import Student from './Student';
 // export default StudentList;
 
 // Reading props in StudentList
-
 const StudentList = (props) => {
     // const studentComponents = props.students.map(student => {
     //     return (
@@ -191,3 +190,39 @@ const StudentList = (props) => {
 };
 
 export default StudentList;
+
+// // ################# Update from Props 3.PropTypes
+// const StudentList = () => {
+//     const studentData = [
+//         {
+//             nameData: 'Ada',
+//             // emailData: 'ada@dev.org'
+//         },
+//         {
+//             nameData: 'Soo-ah',
+//             emailData: 'sooah@dev.org'
+//         },
+//         {
+//             nameData: 'Chrissy',
+//             emailData: 'chrissy@dev.org'
+//         }
+//     ];
+
+//     // The function call studentData.map(...) sets studentComponents to an array of JSX elements. 
+//     const studentComponents = studentData.map(student => {
+//         return (
+//             <li><Student name={student.nameData} email={student.emailData}></Student></li>
+//         );
+//     });
+
+//     return (
+//         <section>
+//             <h2>Student List</h2>
+//             <ul>
+//                 {studentComponents}
+//             </ul>
+//         </section>
+//     );
+// };
+
+// export default StudentList;
