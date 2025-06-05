@@ -1,12 +1,12 @@
 
 // import './App.css';
 
-import './index.css';
+// import './index.css';
 // Import the Component
 // the paths ./path/to/file and path/to/file are equivalent. 
 // Local Component Imports Must Begin with a Path Character
 //  the path must begin with a "path" character, such as ./
-import StudentList from './components/StudentList';
+// import StudentList from './components/StudentList';
 
 // // function App() {
 // //   return (
@@ -33,19 +33,19 @@ import StudentList from './components/StudentList';
 
 // export default App;
 
-import ClassInfo from './components/ClassInfo';
+// import ClassInfo from './components/ClassInfo';
 
-function App() {
-  return (
-    <main>
-      <h1>Attendance</h1>
-      <ClassInfo></ClassInfo>
-      <StudentList></StudentList>
-    </main>
-  );
-}
+// function App() {
+//   return (
+//     <main>
+//       <h1>Attendance</h1>
+//       <ClassInfo></ClassInfo>
+//       <StudentList></StudentList>
+//     </main>
+//   );
+// }
 
-export default App;
+// export default App;
 
 
 // import { useState } from 'react';
@@ -82,3 +82,41 @@ export default App;
 // }
 
 // export default App;
+
+
+// # More Practice: Passing studentData From App to StudentList
+
+// Sending props From App
+// The App component can define studentData, and then send it as a property.
+import './index.css';
+import ClassInfo from './components/ClassInfo';
+import StudentList from './components/StudentList';
+
+function App() {
+  const studentData = [
+    {
+      nameData: 'Ada',
+      emailData: 'ada@dev.org'
+    },
+    {
+      nameData: 'Soo-ah',
+      emailData: 'sooah@dev.org'
+    },
+    {
+      nameData: 'Chrissy',
+      emailData: 'chrissy@dev.org'
+    }
+  ];
+
+  return (
+    <main>
+      <h1>Attendance</h1>
+      {/* In App, create a prop to send to ClassInfo. 
+      The prop's value should be some data related to the number of students in studentData. */}
+      <ClassInfo memberCount={studentData.length}></ClassInfo>
+      <StudentList students={studentData}></StudentList>
+    </main>
+  );
+}
+
+export default App;
