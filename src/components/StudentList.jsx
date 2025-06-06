@@ -160,6 +160,7 @@ import Student from './Student';
 
 // export default StudentList;
 
+
 // Reading props in StudentList
 const StudentList = (props) => {
     // const studentComponents = props.students.map(student => {

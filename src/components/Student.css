@@ -1,0 +1,10 @@
+/* State and Event Handling 3. Updating State */
+/* 1. CSS Classes
+In src/components/Student.css, Sofia adds these two classes: */
+.green {
+  background-color: greenyellow;
+}
+
+.red {
+  background-color: lightcoral;
+}

@@ -32,20 +32,75 @@
 // # She defines:
 // # name is a string, and it is required
 // # email is a string, and it is required
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
+
+
+
+// const Student = (props) => {
+//   return (
+//     <ul>
+//       <li>Nickname: {props.name}</li>
+//       <li>Email: {props.email}</li>
+//     </ul>
+//   );
+// };
+
+// Student.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   email: PropTypes.string.isRequired,
+// };
+
+// export default Student;
+
+
+
+// State and Event Handling 2. Create isPresent State in Student
+// In src/components/Student.js, Sofia adds these two lines to create isPresent state:
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+
+// 5. Modify the JSX to Use Conditional CSS Classes
+import './Student.css';
+
 
 const Student = (props) => {
-  return (
-    <ul>
-      <li>Nickname: {props.name}</li>
-      <li>Email: {props.email}</li>
-    </ul>
-  );
+    // This line is in the Student component function, before the return statement:
+    const [isPresent, setIsPresent] = useState(false);
+
+    // 4. Create the Event Handler
+    // Sofia now creates the event handler, which updates the isPresent state. 
+    const togglePresence = () => {
+        setIsPresent(!isPresent);
+    };
+
+    //  Refactor: function-passing style call to setIsPresent.
+    // const togglePresence = () => {
+    //     setIsPresent(isPresent => !isPresent);
+    // };
+
+    // Then, she creates a variable that holds the name of the (CSS) classes. 
+    // She uses a ternary to express this. If isPresent is true, the variable should be 'green'. 
+    // If isPresent is false, it should be 'red'.
+
+    const nameColor = isPresent ? 'green' : 'red';
+
+    return (
+        <div>
+            <ul>
+                <li className={nameColor}>Nickname: {props.name}</li>
+                <li>Email: {props.email}</li>
+            </ul>
+            {/* 3. Create the Toggle Presence Button in Student */}
+            {/* <button>Toggle if {props.name} is present</button> */}
+            {/* Attach the Event Handler to the Button */}
+            <button onClick={togglePresence}>Toggle if {props.name} is present</button>
+        </div>
+    );
 };
 
 Student.propTypes = {
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
 };
 
 export default Student;
