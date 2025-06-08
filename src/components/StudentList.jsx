@@ -238,35 +238,65 @@
 // StudentList passes pieces of the student data into each Student component.
 
 
-import './StudentList.css';
+// import './StudentList.css';
+// import Student from './Student';
+
+// const StudentList = (props) => {
+//     const studentComponents = props.students.map((student, index) => {
+//         return (
+//             <li key={index}>
+//                 <Student
+//                     id={student.id}
+//                     name={student.nameData}
+//                     email={student.emailData}
+//                     isPresent={student.isPresentData}
+//                     onPresenceToggle={props.onStudentPresenceToggle}
+//                 ></Student>
+//             </li>
+//         );
+//     });
+
+//     // ... return some JSX
+// };
+
+// ## Lifting State Up 3. Passing Down Event Handlers
+// Let's update the PropTypes for StudentList. 
+// Our StudentList component now expects a prop named onStudentPresenceToggle, 
+// whose value is a reference to a function.
 import Student from './Student';
+import './StudentList.css';
+import PropTypes from 'prop-types';
 
+// Now, let's pass this exact same function reference from the StudentList component to each of the Student components it renders./
 const StudentList = (props) => {
-    const studentComponents = props.students.map((student) => {
-        return (
-            <li key={student.id}>
-                <Student
-                    id={student.id}
-                    name={student.nameData}
-                    email={student.emailData}
-                    isPresent={student.isPresentData}
-                ></Student>
-            </li>
-        );
-    });
+  const studentComponents = props.students.map(student => {
+    return (
+      <li key={student.id}>
+        <Student
+          id={student.id}
+          name={student.nameData}
+          email={student.emailData}
+          isPresent={student.isPresentData}
+          onPresenceToggle={props.onStudentPresenceToggle}
+        ></Student>
+      </li>
+    );
+  });
 
-    // ... return some JSX
+  return (
+    <section>
+      <h2 className="student-list__heading">Student List</h2>
+      <ul>{studentComponents}</ul>
+    </section>
+  );
 };
 
-
-StudentList.propTypes = {
-    students: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        nameData: PropTypes.string.isRequired,
-        emailData: PropTypes.string.isRequired,
-        isPresentData: PropTypes.bool.isRequired,
-    }))
+Student.propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    isPresent: PropTypes.bool.isRequired,
+    onPresenceToggle: PropTypes.func.isRequired,
 };
-
 
 export default StudentList;
