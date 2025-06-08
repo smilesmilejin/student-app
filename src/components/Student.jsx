@@ -114,6 +114,15 @@ import PropTypes from 'prop-types';
 import './Student.css';
 
 const Student = (props) => {
+    // ######################### Lifting State Up 4. Lifting State Up
+    // # Creating a New onClick Handler in Student
+    // # Registering attendanceButtonClicked with the Attendance Button
+    const attendanceButtonClicked = () => {
+        // Invoke the function passed in through the prop named "onPresenceToggle"
+        // This function refers to the toggleStudentPresence function in App
+        props.onPresenceToggle(props.id);
+    };
+
 
     const nameColor = props.isPresent ? 'green' : 'red';
 
@@ -123,7 +132,8 @@ const Student = (props) => {
                 <li className={nameColor}>Nickname: {props.name}</li>
                 <li>Email: {props.email}</li>
             </ul>
-            <button onClick={/* togglePresence */}>Toggle if {props.name} is present</button>
+            {/* Registering attendanceButtonClicked with the Attendance Button */}
+            <button onClick={attendanceButtonClicked}>Toggle if {props.name} is present</button>
         </div>
     );
 };
@@ -135,3 +145,6 @@ Student.propTypes = {
     email: PropTypes.string.isRequired,
     isPresent: PropTypes.bool.isRequired,
 };
+
+
+export default Student;

@@ -223,6 +223,7 @@ function App() {
     <main>
       <h1>Attendance</h1>
       <ClassInfo memberCount={studentData.length}></ClassInfo>
+
       <StudentList
         students={studentData}
         onStudentPresenceToggle={toggleStudentPresence} // Pass This Function to StudentList

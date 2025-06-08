@@ -291,12 +291,16 @@ const StudentList = (props) => {
   );
 };
 
-Student.propTypes = {
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    isPresent: PropTypes.bool.isRequired,
-    onPresenceToggle: PropTypes.func.isRequired,
+StudentList.propTypes = {
+  students: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      nameData: PropTypes.string.isRequired,
+      emailData: PropTypes.string.isRequired,
+      isPresentData: PropTypes.bool.isRequired,
+    })
+  ),
+  onStudentPresenceToggle: PropTypes.func.isRequired,
 };
 
 export default StudentList;
