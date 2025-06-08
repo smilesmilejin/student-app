@@ -84,8 +84,8 @@
 // StudentList Passing In name and email
 // Sofia wants to pass a name and an email to each Student component. 
 // Therefore, she adds two props: name and email.
-import './StudentList.css';
-import Student from './Student';
+// import './StudentList.css';
+// import Student from './Student';
 
 // const StudentList = () => {
 //     const headingClass = 'student-list__heading';
@@ -161,36 +161,36 @@ import Student from './Student';
 // export default StudentList;
 
 
-// Reading props in StudentList
-const StudentList = (props) => {
-    // const studentComponents = props.students.map(student => {
-    //     return (
-    //         <li><Student name={student.nameData} email={student.emailData}></Student></li>
-    //     );
-    // });
+// // Reading props in StudentList
+// const StudentList = (props) => {
+//     // const studentComponents = props.students.map(student => {
+//     //     return (
+//     //         <li><Student name={student.nameData} email={student.emailData}></Student></li>
+//     //     );
+//     // });
 
-    // # Addressing "Warning: Each child in a list should have a unique "key" prop."
-    // One possible fix for the key prop warning
-    // We could change our map function in StudentList to this:
-    const studentComponents = props.students.map((student, index) => {
-    return (
-        <li key={index}>
-            <Student name={student.nameData} email={student.emailData}></Student>
-        </li>
-    );
-});
+//     // # Addressing "Warning: Each child in a list should have a unique "key" prop."
+//     // One possible fix for the key prop warning
+//     // We could change our map function in StudentList to this:
+//     const studentComponents = props.students.map((student, index) => {
+//     return (
+//         <li key={index}>
+//             <Student name={student.nameData} email={student.emailData}></Student>
+//         </li>
+//     );
+// });
 
-    return (
-        <section>
-            <h2>Student List</h2>
-            <ul>
-                {studentComponents}
-            </ul>
-        </section>
-    );
-};
+//     return (
+//         <section>
+//             <h2>Student List</h2>
+//             <ul>
+//                 {studentComponents}
+//             </ul>
+//         </section>
+//     );
+// };
 
-export default StudentList;
+// export default StudentList;
 
 // // ################# Update from Props 3.PropTypes
 // const StudentList = () => {
@@ -227,3 +227,46 @@ export default StudentList;
 // };
 
 // export default StudentList;
+
+
+
+// Lifting State Up 2. Single Source of Truth
+// Update PropTypes
+// Ensure StudentList Passes the New App Data
+// Refactoring Opportunity: key=student.id
+// StudentList receives the student data in a prop named students. 
+// StudentList passes pieces of the student data into each Student component.
+
+
+import './StudentList.css';
+import Student from './Student';
+
+const StudentList = (props) => {
+    const studentComponents = props.students.map((student) => {
+        return (
+            <li key={student.id}>
+                <Student
+                    id={student.id}
+                    name={student.nameData}
+                    email={student.emailData}
+                    isPresent={student.isPresentData}
+                ></Student>
+            </li>
+        );
+    });
+
+    // ... return some JSX
+};
+
+
+StudentList.propTypes = {
+    students: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        nameData: PropTypes.string.isRequired,
+        emailData: PropTypes.string.isRequired,
+        isPresentData: PropTypes.bool.isRequired,
+    }))
+};
+
+
+export default StudentList;

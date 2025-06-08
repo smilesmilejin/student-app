@@ -86,8 +86,46 @@
 
 // # More Practice: Passing studentData From App to StudentList
 
-// Sending props From App
-// The App component can define studentData, and then send it as a property.
+// // Sending props From App
+// // The App component can define studentData, and then send it as a property.
+// import './index.css';
+// import ClassInfo from './components/ClassInfo';
+// import StudentList from './components/StudentList';
+
+// function App() {
+//   const studentData = [
+//     {
+//       nameData: 'Ada',
+//       emailData: 'ada@dev.org'
+//     },
+//     {
+//       nameData: 'Soo-ah',
+//       emailData: 'sooah@dev.org'
+//     },
+//     {
+//       nameData: 'Chrissy',
+//       emailData: 'chrissy@dev.org'
+//     }
+//   ];
+
+//   return (
+//     <main>
+//       <h1>Attendance</h1>
+//       {/* In App, create a prop to send to ClassInfo. 
+//       The prop's value should be some data related to the number of students in studentData. */}
+//       <ClassInfo memberCount={studentData.length}></ClassInfo>
+//       <StudentList students={studentData}></StudentList>
+//     </main>
+//   );
+// }
+
+// export default App;
+
+
+// Lifting State Up 2. Single Source of Truth
+// structuring our code so that data is managed in one place.
+// Moving isPresent From Student to App
+
 import './index.css';
 import ClassInfo from './components/ClassInfo';
 import StudentList from './components/StudentList';
@@ -95,28 +133,33 @@ import StudentList from './components/StudentList';
 function App() {
   const studentData = [
     {
+      id: 1,
       nameData: 'Ada',
-      emailData: 'ada@dev.org'
+      emailData: 'ada@dev.org',
+      isPresentData: false,
     },
     {
+      id: 2,
       nameData: 'Soo-ah',
-      emailData: 'sooah@dev.org'
+      emailData: 'sooah@dev.org',
+      isPresentData: false,
     },
     {
+      id: 3,
       nameData: 'Chrissy',
-      emailData: 'chrissy@dev.org'
+      emailData: 'chrissy@dev.org',
+      isPresentData: true,
     }
   ];
 
   return (
     <main>
       <h1>Attendance</h1>
-      {/* In App, create a prop to send to ClassInfo. 
-      The prop's value should be some data related to the number of students in studentData. */}
       <ClassInfo memberCount={studentData.length}></ClassInfo>
       <StudentList students={studentData}></StudentList>
     </main>
   );
 }
+
 
 export default App;
