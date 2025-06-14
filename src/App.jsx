@@ -131,6 +131,7 @@
 import { useState } from 'react';
 import StudentList from './components/StudentList';
 import ClassInfo from './components/ClassInfo';
+import NewStudentForm from './components/NewStudentForm';
 
 function App() {
   // Refactoring Opportunity: Moving large initial values out of components
@@ -243,6 +244,7 @@ function App() {
         students={studentData}
         onStudentPresenceToggle={toggleStudentPresence} // Pass This Function to StudentList
       ></StudentList>
+      <NewStudentForm />
     </main>
   );
 }
