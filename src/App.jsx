@@ -224,6 +224,23 @@ function App() {
     const deleteStudents = () => {
       setStudentData([]);
     };
+    
+    // Handling Forms 2. Submitted Forms
+    // Use object destructuring on the parameter to make it explicitly clear
+    // what keys are expected in the passed-in object argument. The function
+    // still has only one parameter, but we can tell that the value is expected
+    // to be an object with two keys: nameData, and emailData.
+    const addStudentData = ({ nameData, emailData }) => {
+        setStudentData(studentData => {
+            // Duplicate the student list, adding a new record at the end.
+            return [...studentData, {
+                id: Math.max(0, ...studentData.map(student => student.id)) + 1,
+                nameData,   // using a variable alone in object shorthand uses its 
+                emailData,  // name as the key name, and its value as the value.
+                isPresentData: false,
+            }];
+        });
+    };
 
 
   return (
@@ -244,7 +261,9 @@ function App() {
         students={studentData}
         onStudentPresenceToggle={toggleStudentPresence} // Pass This Function to StudentList
       ></StudentList>
-      <NewStudentForm />
+      <NewStudentForm
+          onStudentAdd={addStudentData}
+      ></NewStudentForm>
     </main>
   );
 }

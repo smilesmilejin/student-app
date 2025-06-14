@@ -109,7 +109,7 @@
 // Lifting State Up 2. Single Source of Truth
 // Update PropTypes
 // Use isPresent as a prop in Student
-import { useState } from 'react';
+// import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Student.css';
 
@@ -144,6 +144,7 @@ Student.propTypes = {
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     isPresent: PropTypes.bool.isRequired,
+    onPresenceToggle: PropTypes.func.isRequired,
 };
 
 

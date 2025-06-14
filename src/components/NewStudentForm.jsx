@@ -1,13 +1,15 @@
 // Handling Forms 1. Controlled Forms
-import { useId } from 'react';
+// import { useId } from 'react';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const NewStudentForm = () => {
+
+const NewStudentForm = (props) => {
     // The id and for attributes enable us to associate a <label> element with its corresponding <input> element. 
     // The name attribute on an <input> element is primarily used during traditional HTML form submission. 
     // An id attribute is required if we want to associate a label with the input
     // React 18 introduced a new hook for generating unique IDs. We can use this hook to generate a unique ID for our controlled form, and use that to build a unique ID for each input on the form.
-    const inputId = useId();
+    // const inputId = useId();
 
     // New Piece of State: An Object of formFields
     const [formFields, setFormFields] = useState({
@@ -15,6 +17,23 @@ const NewStudentForm = () => {
         email: '',
     });
 
+    // Handling Forms 2. Submitted Forms
+    const handleSubmit = (event) => {
+        // Prevent the Form's Default Behavior
+        // Be sure to include event.preventDefault(); in any form submission event handler. 
+        // ailure to do so will result in the browser attempting to submit the form using the default behavior, which will cause the page to reload.
+        event.preventDefault();
+
+        props.onStudentAdd({
+            nameData: formFields.name,
+            emailData: formFields.email,
+        });
+
+        setFormFields({
+            name: '',
+            email: '',
+        });
+    };
     // Event Handling To Update formFields
     // Sofia uses spread syntax for a quick way to clone the original formFields object. Each event handler should add a specific key-value pair. 
     // handleNameChange adds the key-value pair name: event.target.value, 
@@ -39,7 +58,7 @@ const NewStudentForm = () => {
 
     // formFields is an object, she can use dot notation to access the name and email values from the object stored in state.
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="fullName">Name:</label>
                 <input
@@ -60,6 +79,12 @@ const NewStudentForm = () => {
                 value="Add Student" />
         </form>
     );
+};
+
+// Hanedling Forms 2. Submitted Forms
+// Sofia updates the PropTypes of NewStudentForm to now anticipate this prop:
+NewStudentForm.propTypes = {
+    onStudentAdd: PropTypes.func.isRequired,
 };
 
 export default NewStudentForm;
